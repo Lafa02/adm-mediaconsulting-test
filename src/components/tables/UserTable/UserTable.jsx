@@ -21,9 +21,11 @@ import {
 } from "@/components/ui/table";
 import { renderUserTableColumns } from "./UserTable.config";
 import api from "@/services/api";
+import { LoaderCircleIcon } from "lucide-react";
 
 const UserTable = ({ openPlanetInfo }) => {
-  const [triggerGetPeople, { data }] = api.endpoints.getPeople.useLazyQuery();
+  const [triggerGetPeople, { data, isFetching }] =
+    api.endpoints.getPeople.useLazyQuery();
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
@@ -67,7 +69,12 @@ const UserTable = ({ openPlanetInfo }) => {
           className="max-w-sm"
         />
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border relative">
+        {isFetching && (
+          <div className="absolute z-20 inset-0 w-full h-full flex items-center backdrop-blur-sm bg-background/10 justify-center">
+            <LoaderCircleIcon className="animate-spin h-8 w-8" />
+          </div>
+        )}
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
