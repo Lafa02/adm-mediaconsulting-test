@@ -55,10 +55,16 @@ const UserTable = ({ openPlanetInfo }) => {
   });
 
   useEffect(() => {
-    toast.promise(triggerGetPeople({ page: pagination.pageIndex + 1 }), {
-      error: "Failed to fetch people",
-    });
-  }, [pagination.pageIndex, triggerGetPeople]);
+    toast.promise(
+      triggerGetPeople({
+        page: pagination.pageIndex + 1,
+        search: columnFilters[0]?.value || "",
+      }),
+      {
+        error: "Failed to fetch people",
+      }
+    );
+  }, [pagination.pageIndex, triggerGetPeople, columnFilters]);
 
   return (
     <div className="w-full">
@@ -66,9 +72,13 @@ const UserTable = ({ openPlanetInfo }) => {
         <Input
           placeholder="Filter names..."
           value={table.getColumn("name")?.getFilterValue() ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => {
+            table.setPagination({
+              pageIndex: 0,
+              pageSize: 10,
+            });
+            table.getColumn("name")?.setFilterValue(event.target.value);
+          }}
           className="max-w-sm"
         />
       </div>
