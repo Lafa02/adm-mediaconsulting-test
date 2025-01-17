@@ -11,7 +11,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <Card>
+    <Card className="mx-4">
       <CardContent>
         <UserTable openPlanetInfo={openPlanetInfo} />
 
