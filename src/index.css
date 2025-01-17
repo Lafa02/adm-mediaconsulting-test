@@ -59,6 +59,17 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--foreground));
+}
+
 @layer base {
   * {
     @apply border-border;

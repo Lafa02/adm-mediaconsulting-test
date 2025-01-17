@@ -22,6 +22,7 @@ import {
 import { renderUserTableColumns } from "./UserTable.config";
 import api from "@/services/api";
 import { LoaderCircleIcon } from "lucide-react";
+import { toast } from "sonner";
 
 const UserTable = ({ openPlanetInfo }) => {
   const [triggerGetPeople, { data, isFetching }] =
@@ -54,7 +55,9 @@ const UserTable = ({ openPlanetInfo }) => {
   });
 
   useEffect(() => {
-    triggerGetPeople({ page: pagination.pageIndex + 1 });
+    toast.promise(triggerGetPeople({ page: pagination.pageIndex + 1 }), {
+      error: "Failed to fetch people",
+    });
   }, [pagination.pageIndex, triggerGetPeople]);
 
   return (
@@ -69,13 +72,13 @@ const UserTable = ({ openPlanetInfo }) => {
           className="max-w-sm"
         />
       </div>
-      <div className="rounded-md border relative">
+      <div className="rounded-md border relative overflow-auto">
         {isFetching && (
           <div className="absolute z-20 inset-0 w-full h-full flex items-center backdrop-blur-sm bg-background/10 justify-center">
             <LoaderCircleIcon className="animate-spin h-8 w-8" />
           </div>
         )}
-        <Table>
+        <Table className="min-w-[900px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
