@@ -11,11 +11,13 @@ const CustomUserTable = ({ openPlanetInfo }) => {
   const [searchName, setSearchName] = useState("");
 
   useEffect(() => {
+    // I want to refetch the table instantly on the first render and if I clear the input
     if (searchName.length === 0) {
       triggerGetPeople();
       return;
     }
 
+    // Added a debounce of .5s to avoid making too many requests
     const timer = setTimeout(() => {
       triggerGetPeople({
         search: searchName,
@@ -24,6 +26,10 @@ const CustomUserTable = ({ openPlanetInfo }) => {
 
     return () => clearTimeout(timer);
   }, [searchName, triggerGetPeople]);
+
+  // I could've created 1 grid table with n children and handle it with only css, but for accessibility
+  // reasons I decided to create a table with rows and cells, but using the rule "display: contents" I
+  // can transfer the grid property to the row's childrens, making it simpler to style
 
   return (
     <div className={styles["user-table"]}>
