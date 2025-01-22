@@ -1,23 +1,24 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "@/store";
 import { Toaster } from "@/components/ui/sonner";
+import { Layout } from "@/components/common";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "@/routes";
 
-createRoot(document.getElementById("root")).render(
+const rootComponent = (
   <StrictMode>
     <Provider store={store}>
-      <div className="flex justify-center items-center min-h-screen py-24">
-        <div className="max-w-[1200px] w-full">
-          <h1 className="text-4xl font-bold text-center mb-8">
-            ADM Media Consulting Test{" "}
-          </h1>
-          <App />
-        </div>
-      </div>
-      <Toaster />
+      <BrowserRouter>
+        <Layout>
+          <Routes />
+        </Layout>
+        <Toaster />
+      </BrowserRouter>
     </Provider>
   </StrictMode>
 );
+
+createRoot(document.getElementById("root")).render(rootComponent);

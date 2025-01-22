@@ -1,26 +1,22 @@
-import { UserTable } from "@/components/tables";
-import { Card, CardContent } from "@/components/ui/card";
-import { useCallback, useState } from "react";
-import { PlanetInfo } from "./components";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
-  const [selectedPlanet, setSelectedPlanet] = useState(-1);
-
-  const openPlanetInfo = useCallback((planet) => {
-    setSelectedPlanet(planet);
-  }, []);
-
   return (
-    <Card className="mx-4">
-      <CardContent>
-        <UserTable openPlanetInfo={openPlanetInfo} />
+    <>
+      <h1 className="text-4xl font-bold text-center mb-8">
+        ADM Media Consulting Test
+      </h1>
 
-        <PlanetInfo
-          selectedPlanet={selectedPlanet}
-          onClose={() => setSelectedPlanet(-1)}
-        />
-      </CardContent>
-    </Card>
+      <div className="flex justify-center gap-4">
+        <Button asChild>
+          <Link to="/lib-table">Go to Lib Table</Link>
+        </Button>
+        <Button asChild>
+          <Link to="/custom-table">Go to Custom Table</Link>
+        </Button>
+      </div>
+    </>
   );
 };
 
