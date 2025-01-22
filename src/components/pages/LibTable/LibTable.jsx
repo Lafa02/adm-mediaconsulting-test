@@ -1,7 +1,7 @@
 import { UserTable } from "@/components/tables";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCallback, useState } from "react";
-import { PlanetInfo } from "./components";
+import { PlanetInfo } from "@/components/common";
 
 const LibTable = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(-1);

@@ -1,0 +1,57 @@
+.user-table {
+    &__wrapper {
+        overflow: auto;
+        position: relative;
+    }
+
+    &__input {
+        margin-bottom: 16px;
+        border-radius: 8px;
+        background: hsl(var(--background));
+        border: 1px solid hsl(var(--border));
+        padding: 4px 12px;
+        font-size: 14px;
+        max-width: 300px;
+        width: 100%;
+    }
+    
+    .table {
+        border: 1px solid hsl(var(--border));
+        border-bottom: none;
+        border-radius: 8px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr) 200px;
+        min-width: 1000px;
+    
+        &__row {
+            display: contents;
+        }
+    
+        &__cell {
+            padding: 16px 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid hsl(var(--border));
+    
+            &--header {
+                font-weight: bold;
+                color: hsl(var(--muted-foreground));
+            }
+        }
+    
+        button {
+            background: hsl(var(--foreground));
+            color:  hsl(var(--background));
+            padding: 8px 12px;
+            border-radius: 8px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+    }
+}
+

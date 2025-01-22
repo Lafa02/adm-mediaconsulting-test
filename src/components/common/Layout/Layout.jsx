@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex justify-center items-center min-h-screen py-24">
-      <div className="max-w-[1200px] flex flex-col gap-4 justify-center w-full mx-4">
+      <div className="max-w-[1200px] flex flex-col gap-4 justify-center w-full px-4">
         {PATH_BACK_BTN_ENABLED.includes(location.pathname) && (
           <Button className="self-start" asChild>
             <Link to="/">
